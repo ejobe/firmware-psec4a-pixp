@@ -1,3 +1,4 @@
+db/**
 par/db/**
 par/incremental_db/**
 par/simluation/**
