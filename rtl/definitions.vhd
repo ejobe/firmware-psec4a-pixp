@@ -32,7 +32,6 @@ type psec4a_dac_array_type is array (psec4a_instances-1 downto 0, psec4a_num_dac
 type psec4a_data_type is array(psec4a_instances-1 downto 0) of std_logic_vector(psec4a_data_width-1 downto 0);
 type psec4a_select_type is array(psec4a_instances-1 downto 0) of std_logic_vector(2 downto 0);
 type psec4a_control_type is array(psec4a_instances-1 downto 0) of std_logic_vector(3 downto 0);
-type psec4a_instance_type is std_logic_vector(psec4a_instances-1 downto 0);
 
 type register_array_type is array (127 downto 0) of std_logic_vector(define_register_size-define_address_size-1 downto 0);
 type read_register_array_type is array (31 downto 0) of std_logic_vector(15 downto 0);

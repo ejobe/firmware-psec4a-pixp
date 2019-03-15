@@ -18,21 +18,21 @@ use work.definitions.all;
 entity psec4a_pixp is
 port(
 	--//psec4a data/control signals:
-	psec4a_vcdl_output_i	:	in		psec4a_instance_type;
-	psec4a_read_clk_o		:	out	psec4a_instance_type;
+	psec4a_vcdl_output_i	:	in		std_logic_vector(psec4a_instances-1 downto 0);
+	psec4a_read_clk_o		:	out	std_logic_vector(psec4a_instances-1 downto 0);
 	psec4a_d_i				:	in		psec4a_data_type;
 	psec4a_xferadr_o		:	out	psec4a_control_type;
 	psec4a_latchsel_o		:	out	psec4a_control_type;
-	psec4a_ringosc_en_o	:	out	psec4a_instance_type;
-	psec4a_ringosc_mon_i	:	in		psec4a_instance_type;
-	psec4a_trigger_i		:	in		psec4a_instance_type; --//only wiring up TRIGOUT1 to FPGA (TRIGOUT1 can be cfg'd as an OR as
+	psec4a_ringosc_en_o	:	out	std_logic_vector(psec4a_instances-1 downto 0);
+	psec4a_ringosc_mon_i	:	in		std_logic_vector(psec4a_instances-1 downto 0);
+	psec4a_trigger_i		:	in		std_logic_vector(psec4a_instances-1 downto 0); --//only wiring up TRIGOUT1 to FPGA (TRIGOUT1 can be cfg'd as an OR as
 	psec4a_compsel_o		:	out	psec4a_select_type;
 	psec4a_chansel_o		:	out	psec4a_select_type;
-	psec4a_rampstart_o	:	out	psec4a_instance_type;
-	psec4a_dllstart_o		:	out	psec4a_instance_type;
-	psec4a_sclk_o			:	out	psec4a_instance_type; --//serial prog clock
-	psec4a_sle_o			:	out	psec4a_instance_type; --//serial prog load enable 
-	psec4a_sdat_o 			:  out	psec4a_instance_type; --//serial prog data
+	psec4a_rampstart_o	:	out	std_logic_vector(psec4a_instances-1 downto 0);
+	psec4a_dllstart_o		:	out	std_logic_vector(psec4a_instances-1 downto 0);
+	psec4a_sclk_o			:	out	std_logic_vector(psec4a_instances-1 downto 0); --//serial prog clock
+	psec4a_sle_o			:	out	std_logic_vector(psec4a_instances-1 downto 0); --//serial prog load enable 
+	psec4a_sdat_o 			:  out	std_logic_vector(psec4a_instances-1 downto 0); --//serial prog data
 	--//ftdi chip / PC readout:
 	ftdi_abus_io			: 	inout std_logic_vector(15 downto 0);  --//3.3V i/o
 	--//pll control signals
@@ -66,7 +66,8 @@ signal REFRESH_CLK_MATCH_10HZ		: std_logic_vector(19 downto 0) := x"186A0"; --x"
 
 signal register_array 	:	register_array_type;
 
-signal psec4a_chan_sel 	: psec4a_select_type;
+signal psec4a_chan_sel 	: std_logic_vector(psec4a_instances-1 downto 0);
+signal psec4a_readout_valid 	:  std_logic_vector(psec4a_instances-1 downto 0);
 
 signal data_fifo_data : std_logic_vector(data_word_size-1 downto 0);
 signal data_ram_rd_addr : std_logic_vector(10 downto 0);
@@ -165,7 +166,7 @@ psec4a_data_mgmt : for i in 0 to psec4a_instances-1 generate
 		registers_i		=> register_array,
 		psec4a_dat_i	=> psec4a_d_i(i),
 		psec4a_ch_sel_i=> psec4a_chan_sel(i),
-		data_valid_i	=> psec4a_readout_valid,
+		data_valid_i	=> psec4a_readout_valid(i),
 		ram_clk_i		=> 
 		ram_rd_addr_i	=> data_ram_rd_addr,
 		ram_wr_addr_i	=> data_ram_wr_addr,
@@ -200,20 +201,20 @@ port map(
 		address_o		=> reg_addr_sig);
 
 --//////---------------------------------------		
-xRDOUT_CNTRL : entity work.rdout_controller 
-	port map(
-		rst_i					=> global_reset_sig,	
-		clk_i					=> clk_register	
-		rdout_reg_i			=> readout_reg_sig,	
-		reg_adr_i			=> reg_addr_sig,	
-		registers_i			=> register_array,	   
-		usb_slwr_i			=> usb_slwr_sig,
-		tx_rdy_o				=> usb_start_wr_sig,	
-		tx_ack_i				=> usb_done_sig,
-		data_rd_addr_o		=> data_ram_rd_addr,
-		data_fifo_i			=> data_fifo_data,
-		rdout_length_o		=> usb_readout_length,
-		rdout_fpga_data_o	=> usb_dataout_sig);	
+--xRDOUT_CNTRL : entity work.rdout_controller 
+--	port map(
+--		rst_i					=> global_reset_sig,	
+--		clk_i					=> clk_register	
+--		rdout_reg_i			=> readout_reg_sig,	
+--		reg_adr_i			=> reg_addr_sig,	
+--		registers_i			=> register_array,	   
+--		usb_slwr_i			=> usb_slwr_sig,
+--		tx_rdy_o				=> usb_start_wr_sig,	
+--		tx_ack_i				=> usb_done_sig,
+--		data_rd_addr_o		=> data_ram_rd_addr,
+--		data_fifo_i			=> data_fifo_data,
+--		rdout_length_o		=> usb_readout_length,
+--		rdout_fpga_data_o	=> usb_dataout_sig);	
 
 --//////---------------------------------------
 xLTC2600 : entity work.DAC_MAIN_LTC2600
