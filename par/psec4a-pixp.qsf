@@ -453,7 +453,6 @@ set_location_assignment PIN_W8 -to gpio_io[0]
 set_location_assignment PIN_AA6 -to led_o[2]
 set_location_assignment PIN_AA7 -to led_o[1]
 set_location_assignment PIN_AB6 -to led_o[0]
-set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
 set_location_assignment PIN_N20 -to clk_i[2]
 set_location_assignment PIN_M21 -to "clk_i[2](n)"
 set_instance_assignment -name IO_STANDARD LVDS -to serial_data_i[1]
@@ -468,3 +467,6 @@ set_location_assignment PIN_N9 -to serial_data_o[1]
 set_location_assignment PIN_M10 -to "serial_data_o[1](n)"
 set_location_assignment PIN_V6 -to serial_data_o[0]
 set_location_assignment PIN_W6 -to "serial_data_o[0](n)"
+set_global_assignment -name QIP_FILE ../rtl/altera_ip/pll0.qip
+set_global_assignment -name SIP_FILE ../rtl/altera_ip/pll0.sip
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
