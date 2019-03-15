@@ -89,7 +89,7 @@ port map(
 	clk_i	=> clk_25MHz_sig, reg_i=>register_array, 
 	power_on_rst_o => reset_pwrup_sig, reset_o => global_reset_sig);
 	
---//////---------------------------------------
+--//////---------------------------------------CLOCKS
 xPLL0 : entity work.pll0
 port map(
 	areset => '0', inclk0 => clk_i(0),
@@ -101,7 +101,7 @@ psec4a_read_clk_o(1) <= clk_psec4a_read(1);
 psec4a_read_clk_o(2) <= clk_psec4a_read(2);
 psec4a_read_clk_o(3) <= clk_psec4a_read(3);
 
---//////---------------------------------------
+--//////---------------------------------------CLOCKED ONE-SHOTS
 proc_make_refresh_pulse : process(clk_1MHz_sig)
 begin
 	if rising_edge(clk_1MHz_sig) then			
