@@ -47,8 +47,6 @@ set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
 set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
 set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 256
 set_global_assignment -name IOBANK_VCCIO 1.2V -section_id 6A
-set_global_assignment -name VHDL_FILE "../rtl/psec4a-pixp.vhd"
-set_global_assignment -name VHDL_FILE ../rtl/definitions.vhd
 set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
@@ -60,8 +58,8 @@ set_global_assignment -name IOBANK_VCCIO 1.2V -section_id 7A
 set_instance_assignment -name IO_STANDARD LVDS -to clk_i[1]
 set_instance_assignment -name IO_STANDARD LVDS -to clk_i[0]
 set_instance_assignment -name IO_STANDARD LVDS -to clk_i
-set_location_assignment PIN_G15 -to clk_i[1]
-set_location_assignment PIN_G14 -to "clk_i[1](n)"
+set_location_assignment PIN_T13 -to clk_i[1]
+set_location_assignment PIN_T12 -to "clk_i[1](n)"
 set_location_assignment PIN_Y15 -to clk_i[0]
 set_location_assignment PIN_Y16 -to "clk_i[0](n)"
 set_instance_assignment -name IO_STANDARD "1.2 V" -to psec4a_xferadr_o[3][3]
@@ -343,11 +341,11 @@ set_location_assignment PIN_AE18 -to psec4a_dllstart_o[3]
 set_location_assignment PIN_AE26 -to psec4a_dllstart_o[2]
 set_location_assignment PIN_W25 -to psec4a_compsel_o[2][0]
 set_location_assignment PIN_W26 -to psec4a_compsel_o[2][1]
-set_location_assignment PIN_Y25 -to psec4a_compsel_o[2][2]
+set_location_assignment PIN_R23 -to psec4a_compsel_o[2][2]
 set_location_assignment PIN_AD18 -to psec4a_compsel_o[3][2]
 set_location_assignment PIN_AD17 -to psec4a_compsel_o[3][1]
 set_location_assignment PIN_AD16 -to psec4a_compsel_o[3][0]
-set_location_assignment PIN_Y26 -to psec4a_chansel_o[2][0]
+set_location_assignment PIN_T23 -to psec4a_chansel_o[2][0]
 set_location_assignment PIN_AA26 -to psec4a_chansel_o[2][1]
 set_location_assignment PIN_AA24 -to psec4a_chansel_o[2][2]
 set_location_assignment PIN_AE25 -to psec4a_chansel_o[3][0]
@@ -365,41 +363,8 @@ set_location_assignment PIN_B21 -to psec4a_compsel_o[0][0]
 set_location_assignment PIN_C22 -to psec4a_compsel_o[0][1]
 set_location_assignment PIN_C23 -to psec4a_compsel_o[0][2]
 set_location_assignment PIN_AE23 -to psec4a_chansel_o[3][2]
-set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to ftdi_abus_io[0]
-set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to ftdi_abus_io[15]
-set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to ftdi_abus_io[14]
-set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to ftdi_abus_io[13]
-set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to ftdi_abus_io[12]
-set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to ftdi_abus_io[11]
-set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to ftdi_abus_io[10]
-set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to ftdi_abus_io[9]
-set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to ftdi_abus_io[8]
-set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to ftdi_abus_io[7]
-set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to ftdi_abus_io[6]
-set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to ftdi_abus_io[5]
-set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to ftdi_abus_io[4]
-set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to ftdi_abus_io[3]
-set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to ftdi_abus_io[2]
-set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to ftdi_abus_io[1]
-set_global_assignment -name IOBANK_VCCIO 3.3V -section_id 8A
-set_location_assignment PIN_H8 -to ftdi_abus_io[0]
-set_location_assignment PIN_H7 -to ftdi_abus_io[1]
-set_location_assignment PIN_G7 -to ftdi_abus_io[2]
-set_location_assignment PIN_G6 -to ftdi_abus_io[3]
-set_location_assignment PIN_F7 -to ftdi_abus_io[4]
-set_location_assignment PIN_E9 -to ftdi_abus_io[5]
-set_location_assignment PIN_F6 -to ftdi_abus_io[6]
-set_location_assignment PIN_D8 -to ftdi_abus_io[7]
-set_location_assignment PIN_D7 -to ftdi_abus_io[8]
-set_location_assignment PIN_E6 -to ftdi_abus_io[9]
-set_location_assignment PIN_D6 -to ftdi_abus_io[10]
-set_location_assignment PIN_C7 -to ftdi_abus_io[11]
-set_location_assignment PIN_B6 -to ftdi_abus_io[12]
-set_location_assignment PIN_B7 -to ftdi_abus_io[13]
-set_location_assignment PIN_A5 -to ftdi_abus_io[14]
-set_location_assignment PIN_A7 -to ftdi_abus_io[15]
-set_location_assignment PIN_L7 -to ext_trig_i
-set_location_assignment PIN_K6 -to ext_trig_o
+set_global_assignment -name IOBANK_VCCIO 2.5V -section_id 8A
+set_location_assignment PIN_A5 -to ext_trig_i
 set_location_assignment PIN_AA22 -to dac_cntrl_io[0]
 set_location_assignment PIN_AA23 -to dac_cntrl_io[1]
 set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to dac_cntrl_io[0]
@@ -410,8 +375,7 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to dac_cntrl_io[1]
 set_location_assignment PIN_U22 -to dac_cntrl_io[2]
 set_location_assignment PIN_V22 -to dac_cntrl_io[3]
 set_location_assignment PIN_Y23 -to dac_cntrl_io[4]
-set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to ext_trig_i
-set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to ext_trig_o
+set_instance_assignment -name IO_STANDARD "2.5 V" -to ext_trig_i
 set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to pll_cntrl_io[4]
 set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to pll_cntrl_io[3]
 set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to pll_cntrl_io[2]
@@ -419,54 +383,102 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to pll_cntrl_io[1]
 set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to pll_cntrl_io[0]
 set_location_assignment PIN_T19 -to pll_cntrl_io[0]
 set_location_assignment PIN_U19 -to pll_cntrl_io[1]
-set_location_assignment PIN_V20 -to pll_cntrl_io[2]
+set_location_assignment PIN_W21 -to pll_cntrl_io[2]
 set_location_assignment PIN_U20 -to pll_cntrl_io[3]
 set_location_assignment PIN_W20 -to pll_cntrl_io[4]
-set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to led_o[0]
-set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to gpio_io[11]
-set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to gpio_io[10]
-set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to gpio_io[9]
-set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to gpio_io[8]
-set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to gpio_io[7]
-set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to gpio_io[6]
-set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to gpio_io[5]
-set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to gpio_io[4]
-set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to gpio_io[3]
-set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to gpio_io[2]
-set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to gpio_io[1]
-set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to gpio_io[0]
-set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to led_o[2]
-set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to led_o[1]
+set_instance_assignment -name IO_STANDARD "2.5 V" -to led_o[0]
+set_instance_assignment -name IO_STANDARD "2.5 V" -to gpio_io[7]
+set_instance_assignment -name IO_STANDARD "2.5 V" -to gpio_io[6]
+set_instance_assignment -name IO_STANDARD "2.5 V" -to gpio_io[5]
+set_instance_assignment -name IO_STANDARD "2.5 V" -to gpio_io[4]
+set_instance_assignment -name IO_STANDARD "2.5 V" -to gpio_io[3]
+set_instance_assignment -name IO_STANDARD "2.5 V" -to gpio_io[2]
+set_instance_assignment -name IO_STANDARD "2.5 V" -to gpio_io[1]
+set_instance_assignment -name IO_STANDARD "2.5 V" -to gpio_io[0]
+set_instance_assignment -name IO_STANDARD "2.5 V" -to led_o[2]
+set_instance_assignment -name IO_STANDARD "2.5 V" -to led_o[1]
 set_global_assignment -name IOBANK_VCCIO 3.3V -section_id 3A
-set_location_assignment PIN_H10 -to gpio_io[11]
-set_location_assignment PIN_J10 -to gpio_io[10]
-set_location_assignment PIN_K10 -to gpio_io[9]
-set_location_assignment PIN_P8 -to gpio_io[8]
-set_location_assignment PIN_R8 -to gpio_io[7]
-set_location_assignment PIN_R9 -to gpio_io[6]
-set_location_assignment PIN_T7 -to gpio_io[5]
-set_location_assignment PIN_T8 -to gpio_io[4]
-set_location_assignment PIN_L9 -to gpio_io[3]
-set_location_assignment PIN_U7 -to gpio_io[2]
-set_location_assignment PIN_V8 -to gpio_io[1]
-set_location_assignment PIN_W8 -to gpio_io[0]
-set_location_assignment PIN_AA6 -to led_o[2]
-set_location_assignment PIN_AA7 -to led_o[1]
-set_location_assignment PIN_AB6 -to led_o[0]
-set_location_assignment PIN_N20 -to clk_i[2]
-set_location_assignment PIN_M21 -to "clk_i[2](n)"
-set_instance_assignment -name IO_STANDARD LVDS -to serial_data_i[1]
-set_instance_assignment -name IO_STANDARD LVDS -to serial_data_i[0]
-set_instance_assignment -name IO_STANDARD LVDS -to serial_data_o[1]
-set_instance_assignment -name IO_STANDARD LVDS -to serial_data_o[0]
-set_location_assignment PIN_N7 -to serial_data_i[1]
-set_location_assignment PIN_P6 -to "serial_data_i[1](n)"
-set_location_assignment PIN_L8 -to serial_data_i[0]
-set_location_assignment PIN_K9 -to "serial_data_i[0](n)"
-set_location_assignment PIN_N9 -to serial_data_o[1]
-set_location_assignment PIN_M10 -to "serial_data_o[1](n)"
-set_location_assignment PIN_V6 -to serial_data_o[0]
-set_location_assignment PIN_W6 -to "serial_data_o[0](n)"
+set_location_assignment PIN_H8 -to gpio_io[7]
+set_location_assignment PIN_H9 -to gpio_io[6]
+set_location_assignment PIN_G7 -to gpio_io[5]
+set_location_assignment PIN_F7 -to gpio_io[4]
+set_location_assignment PIN_D7 -to gpio_io[3]
+set_location_assignment PIN_D8 -to gpio_io[2]
+set_location_assignment PIN_C7 -to gpio_io[1]
+set_location_assignment PIN_B7 -to gpio_io[0]
+set_location_assignment PIN_G6 -to led_o[2]
+set_location_assignment PIN_F6 -to led_o[1]
+set_location_assignment PIN_E6 -to led_o[0]
+set_location_assignment PIN_G15 -to clk_i[2]
+set_location_assignment PIN_G14 -to "clk_i[2](n)"
+set_instance_assignment -name IO_STANDARD LVDS -to clk_i[2]
+set_global_assignment -name VHDL_FILE ../rtl/Slow_Clocks.vhd
+set_global_assignment -name VHDL_FILE "../rtl/psec4a-pixp.vhd"
+set_global_assignment -name VHDL_FILE ../rtl/definitions.vhd
 set_global_assignment -name QIP_FILE ../rtl/altera_ip/pll0.qip
-set_global_assignment -name SIP_FILE ../rtl/altera_ip/pll0.sip
+set_global_assignment -name SEARCH_PATH "c:\\users\\eric\\desktop\\projects\\sandia\\psec4a_32_channel\\firmware-psec4a-pixp\\rtl\\altera_ip"
+set_global_assignment -name SEARCH_PATH "c:\\users\\eric\\desktop\\projects\\sandia\\psec4a_32_channel\\firmware-psec4a-pixp\\rtl"
+set_instance_assignment -name IO_STANDARD LVDS -to clk_o
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to ftdi_uart_io[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to ftdi_uart_io[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to gpio_pd_board_io[5]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to gpio_pd_board_io[4]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to gpio_pd_board_io[3]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to gpio_pd_board_io[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to gpio_pd_board_io[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to gpio_pd_board_io[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to optical_uart_io[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to optical_uart_io[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to pll_cntrl_io[7]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to pll_cntrl_io[6]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to pll_cntrl_io[5]
+set_instance_assignment -name IO_STANDARD "1.2 V" -to psec4a_avdd_en_o[1]
+set_instance_assignment -name IO_STANDARD "1.2 V" -to psec4a_avdd_en_o[0]
+set_location_assignment PIN_AF7 -to clk_o
+set_location_assignment PIN_AF8 -to "clk_o(n)"
+set_location_assignment PIN_R10 -to ftdi_uart_io[1]
+set_location_assignment PIN_R9 -to ftdi_uart_io[0]
+set_location_assignment PIN_P8 -to optical_uart_io[1]
+set_location_assignment PIN_R8 -to optical_uart_io[0]
+set_location_assignment PIN_W8 -to pll_cntrl_io[7]
+set_location_assignment PIN_Y8 -to pll_cntrl_io[6]
+set_location_assignment PIN_V8 -to pll_cntrl_io[5]
+set_global_assignment -name IOBANK_VCCIO 2.5V -section_id 3B
+set_location_assignment PIN_V23 -to psec4a_avdd_en_o[0]
+set_location_assignment PIN_K21 -to psec4a_avdd_en_o[1]
+set_location_assignment PIN_AA6 -to gpio_pd_board_io[5]
+set_location_assignment PIN_T7 -to gpio_pd_board_io[4]
+set_location_assignment PIN_AA7 -to gpio_pd_board_io[3]
+set_location_assignment PIN_AD7 -to gpio_pd_board_io[2]
+set_location_assignment PIN_T8 -to gpio_pd_board_io[1]
+set_location_assignment PIN_AB6 -to gpio_pd_board_io[0]
+set_instance_assignment -name IO_STANDARD LVDS -to serial_data_i
+set_instance_assignment -name IO_STANDARD LVDS -to serial_data_o
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to uxi_pd_bias_en_o
+set_location_assignment PIN_W11 -to serial_data_i
+set_location_assignment PIN_Y11 -to "serial_data_i(n)"
+set_location_assignment PIN_W10 -to serial_data_o
+set_location_assignment PIN_Y10 -to "serial_data_o(n)"
+set_location_assignment PIN_AD6 -to uxi_pd_bias_en_o
+set_global_assignment -name ENABLE_OCT_DONE OFF
+set_global_assignment -name ENABLE_CONFIGURATION_PINS OFF
+set_global_assignment -name ENABLE_BOOT_SEL_PIN OFF
+set_global_assignment -name STRATIXV_CONFIGURATION_SCHEME "ACTIVE SERIAL X1"
+set_global_assignment -name USE_CONFIGURATION_DEVICE ON
+set_global_assignment -name STRATIXII_CONFIGURATION_DEVICE EPCQ128
+set_global_assignment -name ENABLE_CRC_ERROR_PIN ON
+set_global_assignment -name CRC_ERROR_OPEN_DRAIN ON
+set_global_assignment -name OUTPUT_IO_TIMING_NEAR_END_VMEAS "HALF VCCIO" -rise
+set_global_assignment -name OUTPUT_IO_TIMING_NEAR_END_VMEAS "HALF VCCIO" -fall
+set_global_assignment -name OUTPUT_IO_TIMING_FAR_END_VMEAS "HALF SIGNAL SWING" -rise
+set_global_assignment -name OUTPUT_IO_TIMING_FAR_END_VMEAS "HALF SIGNAL SWING" -fall
+set_global_assignment -name ACTIVE_SERIAL_CLOCK FREQ_25MHZ
+set_global_assignment -name NOMINAL_CORE_SUPPLY_VOLTAGE 1.1V
+set_global_assignment -name VCCPGM_USER_VOLTAGE 3.3V
+set_global_assignment -name VCCBAT_USER_VOLTAGE 1.2V
+set_global_assignment -name VCCE_GXBL_USER_VOLTAGE 1.1V
+set_global_assignment -name VCCE_GXBR_USER_VOLTAGE 1.1V
+set_global_assignment -name VCCL_GXBL_USER_VOLTAGE 1.1V
+set_global_assignment -name VCCL_GXBR_USER_VOLTAGE 1.1V
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
+set_global_assignment -name TEXT_FILE "output_files/psec4a-pixp-pinout.txt"
